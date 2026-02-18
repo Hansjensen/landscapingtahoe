@@ -1,0 +1,52 @@
+---
+import dateFormat from "@/lib/utils/dateFormat";
+import { humanize } from "@/lib/utils/textConverter";
+import ImageMod from "./ImageMod.astro";
+
+const { data, className } = Astro.props;
+const { title, image, date, categories } = data.data;
+---
+
+<div
+  data-aos="zoom-out-sm"
+  data-aos-delay="200"
+  class={`bg-body rounded-xl overflow-hidden transition duration-300 ease-out group relative ${className}`}
+>
+  {
+    image && (
+      <div class="mb-5 rounded-lg overflow-hidden">
+        <ImageMod
+          class="w-full transition duration-300 ease-out origin-top-left group-hover:scale-[1.07] group-hover:-rotate-px"
+          src={image}
+          alt={title}
+          width={400}
+          height={250}
+          format="webp"
+        />
+      </div>
+    )
+  }
+
+  <ul>
+    {
+      categories.map((category: string, index: number) => (
+        <li class="text-primary font-semibold">
+          {humanize(category)}
+          {index !== categories.length - 1 && ","}
+        </li>
+      ))
+    }
+  </ul>
+
+  <a class="after:absolute after:inset-0" href={`/blog/${data.id}`}>
+    <h4 class="my-3 h5">
+      {title}
+    </h4>
+  </a>
+
+  {
+    date && (
+      <date class="text-text-dark/50 font-semibold">{dateFormat(date)}</date>
+    )
+  }
+</div>

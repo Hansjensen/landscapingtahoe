@@ -1,0 +1,97 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const homepage = await getListPage("homepage", "-index");
+
+const { our_expertise } = homepage.data;
+if (!our_expertise.enable) return null;
+---
+
+<section class="section overflow-hidden">
+  <div class="container flex max-lg:flex-col gap-16 items-center">
+    <div
+      data-aos="zoom-in-sm"
+      data-aos-delay="200"
+      class="lg:w-[50%] scale-100 lg:scale-75 xl:scale-100"
+    >
+      <ImageMod
+        class="rounded-xl lg:h-[291px] w-[493px] object-cover ml-8"
+        src={our_expertise.images[0]}
+        height={1188}
+        width={1170}
+        alt={our_expertise.title}
+      />
+      <div class="flex gap-6 mt-6 relative">
+        <ImageMod
+          class="rounded-xl lg:h-[404px] w-[310px] object-cover"
+          src={our_expertise.images[1]}
+          height={1188}
+          width={1170}
+          alt={our_expertise.title}
+        />
+        <ImageMod
+          class="rounded-xl lg:h-[290px] w-[294px] object-cover"
+          src={our_expertise.images[2]}
+          height={1188}
+          width={1170}
+          alt={our_expertise.title}
+        />
+
+        <div
+          data-aos="zoom-in-sm"
+          data-aos-delay="200"
+          class="absolute -top-25 md:-top-1/2 md:translate-y-1/2 left-1/2 -translate-x-1/2 bg-secondary backdrop-blur-md p-5 border-4 border-primary rounded-2xl shadow-md max-w-[220px] text-center"
+        >
+          <h3
+            class="h1 mb-2 text-text-light"
+            set:html={our_expertise.experience.years}
+          />
+          <p
+            class="text-text-light text-2xl"
+            set:html={markdownify(our_expertise.experience.label)}
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:w-[50%]">
+      <h2
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="text-h1"
+        set:html={markdownify(our_expertise.title)}
+      />
+      <p
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="text-lg mt-6"
+        set:html={markdownify(our_expertise.description)}
+      />
+
+      <div class="mt-12 space-y-6">
+        {
+          our_expertise.skills.map((skill, i) => (
+            <div
+              data-aos="fade-up-sm"
+              data-aos-delay={`${100 + i * 100}`}
+              class="flex gap-4 items-start"
+            >
+              <p class="w-16 h-16 rounded-full bg-secondary border-2 border-primary shrink-0 flex items-center justify-center text-text-light font-bold h3">
+                {i + 1}
+              </p>
+              <div>
+                <h3 class="h5 mb-2" set:html={markdownify(skill.title)} />
+                <p
+                  class="text-balance"
+                  set:html={markdownify(skill.description)}
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

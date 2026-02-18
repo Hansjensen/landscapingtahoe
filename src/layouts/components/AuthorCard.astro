@@ -1,0 +1,40 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import ImageMod from "./ImageMod.astro";
+import Social from "./Social.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  data: CollectionEntry<"aboutpage">["data"]["our_team"]["members"][0];
+  index: number;
+};
+
+const { data, index } = Astro.props;
+const { name, image, position, social } = data;
+---
+
+<article
+  data-aos="fade-up-sm"
+  data-aos-delay={`${150 + index * 100}`}
+  class="text-center"
+>
+  <figure class="overflow-hidden rounded-t-xl">
+    <ImageMod
+      class="w-full md:h-73 object-cover"
+      src={image}
+      width={400}
+      height={294}
+      alt={name}
+    />
+  </figure>
+
+  <div class="bg-body p-6 py-8 rounded-b-xl">
+    <h4 class="h6 mb-1" set:html={markdownify(name)} />
+    <p class="text-text-dark/70 mb-2" set:html={markdownify(position)} />
+    {
+      social && (
+        <Social source={social} className="flex justify-center gap-5 mt-4" />
+      )
+    }
+  </div>
+</article>

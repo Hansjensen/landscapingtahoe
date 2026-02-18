@@ -1,0 +1,357 @@
+{
+  "file": "src/content/homepage/-index.md",
+  "name": "homepage",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "banner",
+      "label": "Banner",
+      "type": "object",
+      "description": "Banner",
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "content",
+          "label": "Content",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "image",
+          "label": "Image",
+          "type": "media",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "satisfied_customers",
+          "label": "Satisfied Customers",
+          "type": "object",
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "enable",
+              "label": "Enable",
+              "type": "boolean",
+              "value": false,
+              "defaultValue": false
+            },
+            {
+              "name": "count",
+              "label": "Count",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "images",
+              "label": "Images",
+              "type": "gallery",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "button_solid",
+          "label": "Button Solid",
+          "type": "object",
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "enable",
+              "label": "Enable",
+              "type": "boolean",
+              "value": false,
+              "defaultValue": false
+            },
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "link",
+              "label": "Link",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "icon",
+              "label": "Icon",
+              "type": "string",
+              "value": "",
+              "description": "Icon name from react-icons",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "button_outline",
+          "label": "Button Outline",
+          "type": "object",
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "enable",
+              "label": "Enable",
+              "type": "boolean",
+              "value": false,
+              "defaultValue": false
+            },
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "link",
+              "label": "Link",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "icon",
+              "label": "Icon",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "why_choose_us",
+      "label": "Why Choose Us",
+      "type": "object",
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "enable",
+          "label": "Enable",
+          "type": "boolean",
+          "value": false,
+          "defaultValue": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "image",
+          "label": "Image",
+          "type": "media",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "features",
+          "label": "Features",
+          "type": "Array",
+          "value": [],
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "name": "what_we_offer",
+      "label": "What We Offer",
+      "type": "object",
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "enable",
+          "label": "Enable",
+          "type": "boolean",
+          "value": false,
+          "defaultValue": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "button",
+          "label": "Button",
+          "type": "object",
+          "description": "Services will be fetched from `src/content/services/`",
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "enable",
+              "label": "Enable",
+              "type": "boolean",
+              "value": false,
+              "defaultValue": false
+            },
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "link",
+              "label": "Link",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "our_expertise",
+      "label": "Our Expertise",
+      "type": "object",
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "enable",
+          "label": "Enable",
+          "type": "boolean",
+          "value": false,
+          "defaultValue": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "experience",
+          "label": "Experience",
+          "type": "object",
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "years",
+              "label": "Years",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "label",
+              "label": "Label",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "images",
+          "label": "Images",
+          "type": "gallery",
+          "defaultValue": ""
+        },
+        {
+          "name": "skills",
+          "label": "Skills",
+          "type": "Array",
+          "value": [],
+          "defaultValue": "",
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "type": "string",
+              "value": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "blog_section",
+      "label": "Blog Section",
+      "type": "object",
+      "defaultValue": "",
+      "fields": [
+        {
+          "name": "enable",
+          "label": "Enable",
+          "type": "boolean",
+          "value": false,
+          "defaultValue": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "value": "",
+          "defaultValue": ""
+        }
+      ]
+    }
+  ]
+}

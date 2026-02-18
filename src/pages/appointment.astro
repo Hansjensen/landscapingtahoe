@@ -1,0 +1,195 @@
+---
+import TitleCenter from "@/components/TitleCenter.astro";
+import config from "@/config/config.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import FAQs from "@/partials/FAQs.astro";
+
+const pageIndex = await getListPage("appointmentpage", "-index");
+if (pageIndex.data.draft) return Astro.redirect("/404");
+---
+
+<Base {...pageIndex.data}>
+  <section class="section-lg">
+    <div class="container flex max-lg:flex-col gap-16 items-center">
+      <div data-aos="zoom-in-sm" data-aos-delay="200" class="lg:w-[45%]">
+        <TitleCenter
+          title={pageIndex.data.title}
+          description={pageIndex.data.description}
+          className="xl:w-[80%]"
+        />
+
+        <div
+          class="flex flex-row flex-wrap sm:justify-center lg:flex-col gap-4 sm:gap-8 mt-12"
+        >
+          <!-- Phone  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.phone && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-6 h-6"
+                  icon={"FaPhone"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"Call Us"} />
+              <a
+                href={`tel:${config.contact_info.phone}`}
+                class="mb-6"
+                set:html={markdownify(config.contact_info.phone)}
+              />
+            </div>
+          </div>
+
+          <!-- Email  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.email && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-6 h-6"
+                  icon={"FaEnvelope"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"SEND AN EMAIL"} />
+              <a href={`mailto:${config.contact_info.email}`} class="mb-6">
+                {config.contact_info.email}
+              </a>
+            </div>
+          </div>
+
+          <!-- OUR OFFICE  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.address && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-6 h-6"
+                  icon={"FaLocationDot"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"OUR OFFICE"} />
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(config.contact_info.address)}`}
+                class="mb-6"
+                set:html={markdownify(config.contact_info.address)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-[55%]">
+        <form
+          data-aos="zoom-in-sm"
+          data-aos-delay="150"
+          action={config.params.contact_form_action}
+          method="POST"
+          class=""
+        >
+          <div class="lg:flex gap-4">
+            <fieldset class="mb-6 w-full">
+              <label
+                for="first-name"
+                class="text-text-dark font-semibold"
+                aria-label="First Name">First Name</label
+              >
+              <input
+                id="first-name"
+                name="first-name"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="First Name"
+                type="text"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="mb-6 w-full">
+              <label
+                for="last-name"
+                class="text-text-dark font-semibold"
+                aria-label="Last Name">Last Name</label
+              >
+              <input
+                id="last-name"
+                name="last-name"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="Last Name"
+                type="text"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="lg:flex gap-4">
+            <fieldset class="mb-6 w-full">
+              <label
+                for="email"
+                class="text-text-dark font-semibold"
+                aria-label="email">Email</label
+              >
+              <input
+                id="email"
+                name="email"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="your.email@example.com"
+                type="email"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="mb-6 w-full">
+              <label
+                for="phone"
+                class="text-text-dark font-semibold"
+                aria-label="Phone Number">Phone Number</label
+              >
+              <input
+                id="phone"
+                name="phone"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="01234567890"
+                type="text"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <fieldset class="mb-6 w-full">
+            <label
+              for="message"
+              class="text-text-dark font-semibold"
+              aria-label="How Can We Help?">How Can We Help?</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+              placeholder="Type your message here..."
+              rows={8}
+              required></textarea>
+          </fieldset>
+
+          <button
+            class="btn btn-primary hover:bg-secondary text-body w-full"
+            type="submit"
+          >
+            Book Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <FAQs />
+</Base>

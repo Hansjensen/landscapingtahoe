@@ -1,0 +1,11 @@
+.btn {
+  @apply inline-block rounded-lg px-7.5 py-6.5 font-semibold transition text-lg;
+}
+
+.btn-primary {
+  @apply border-b-secondary border-b-4 bg-primary text-white hover:bg-body hover:text-primary duration-300;
+}
+
+.btn-outline {
+  @apply border-2 border-light text-text-light hover:bg-primary bg-transparent hover:border-primary duration-300;
+}

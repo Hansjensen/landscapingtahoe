@@ -1,0 +1,8 @@
+/* form style */
+@utility form-input {
+  @apply w-full rounded-lg border border-border/40 bg-secondary px-6 py-4 text-text-light placeholder:text-text-light/40 focus:border-primary  focus:ring-transparent;
+}
+
+@utility form-label {
+  @apply mb-4 block font-secondary text-xl font-normal text-text-dark;
+}

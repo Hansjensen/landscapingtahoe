@@ -1,0 +1,20 @@
+---
+import DynamicIcon from "@/helpers/DynamicIcon";
+
+const { data, variant, className } = Astro.props;
+if (!data || !data.enable) return null;
+---
+
+<a
+  class={`btn ${variant === "outline" ? "btn-outline" : "btn-primary"} ${className}`}
+  href={data.link}
+  target={data.link.startsWith("http") ? "_blank" : "_self"}
+  rel={data.link.startsWith("http") ? "noopener noreferrer" : ""}
+>
+  {
+    data.icon && (
+      <DynamicIcon icon={data.icon} className="mr-2 -mt-1 inline-block" />
+    )
+  }
+  {data.label}
+</a>

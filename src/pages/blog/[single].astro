@@ -1,0 +1,92 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import Share from "@/components/Share.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import dateFormat from "@/lib/utils/dateFormat";
+import similarItems from "@/lib/utils/similarItems";
+import { markdownify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
+import { FaRegClock } from "react-icons/fa6";
+
+export async function getStaticPaths() {
+  const posts = await getSinglePage("blogpage");
+
+  const paths = posts.map((post) => ({
+    params: {
+      single: post.id,
+    },
+    props: { post },
+  }));
+  return paths;
+}
+
+const { post } = Astro.props;
+const { title, date, description, image } = post.data;
+
+const posts = await getSinglePage("blogpage");
+const similarPosts = similarItems(post, posts);
+const { Content } = await render(post);
+---
+
+<Base {...post.data}>
+  <section class="section-lg">
+    <div class="container">
+      <article class="lg:w-[80%] mx-auto">
+        <h1 set:html={markdownify(title)} class="mb-4 text-center" />
+        {
+          date && (
+            <div class="flex justify-center mb-16">
+              <date class="flex items-center gap-2">
+                <FaRegClock className={"inline-block"} />
+                {dateFormat(date)}
+              </date>
+            </div>
+          )
+        }
+
+        {
+          image && (
+            <div class="mb-10">
+              <ImageMod
+                src={image}
+                height={500}
+                width={1200}
+                alt={title}
+                class="w-full rounded-lg"
+                format="webp"
+              />
+            </div>
+          )
+        }
+        <div class="content mb-10">
+          <Content />
+        </div>
+        <div class="flex items-center gap-3">
+          <h5>Share :</h5>
+          <Share
+            className="social-icons"
+            title={title}
+            description={description}
+            slug={post.id}
+          />
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Related posts -->
+  <section class="section bg-light">
+    <div class="container">
+      <h2 class="mb-12 text-center">Related Posts</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {
+          similarPosts.map((post) => (
+            <BlogCard data={post} className="bg-light" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

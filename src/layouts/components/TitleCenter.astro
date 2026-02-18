@@ -1,0 +1,22 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+
+const { title, description, centerText, className } = Astro.props;
+---
+
+<div
+  class={`lg:w-[80%] xl:w-[60%] ${centerText ? "text-center mx-auto" : "max-lg:text-center"} ${className}`}
+>
+  <h2
+    data-aos="fade-up-sm"
+    data-aos-delay="150"
+    class="text-h1"
+    set:html={markdownify(title)}
+  />
+  <p
+    data-aos="fade-up-sm"
+    data-aos-delay="200"
+    class="text-lg mt-6"
+    set:html={markdownify(description)}
+  />
+</div>

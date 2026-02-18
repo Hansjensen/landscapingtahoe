@@ -1,0 +1,52 @@
+---
+import Button from "@/components/Button.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const sectionData = await getListPage("ctaSection", "call-to-action");
+if (!sectionData.data.enable) return null;
+const { image, title, description, button } = sectionData.data;
+---
+
+<section class="section pb-0 relative z-10 text-white overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0 bottom-0">
+    <img
+      src="/images/footer-bg.png"
+      alt=""
+      class="w-full h-full object-cover opacity-100 pointer-events-none"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="container relative z-10">
+    <div
+      data-aos="fade-up-sm"
+      data-aos-delay="200"
+      class="flex max-lg:flex-col max-lg:text-center gap-12 lg:gap-6 items-center lg:items-end"
+    >
+      <div class="flex-1">
+        <h2 set:html={markdownify(title)} class="h1 mb-6 text-text-light" />
+        <p set:html={markdownify(description)} class="text-balance text-lg" />
+      </div>
+      <div class="shrink-0">
+        <Button
+          className="block bg-secondary hover:bg-white border-b-4 border-primary/35"
+          data={button}
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 relative z-10">
+    <ImageMod
+      class="w-full h-[450px] object-cover object-top"
+      src={image}
+      width={1900}
+      height={500}
+      alt="cta-image"
+      format="webp"
+    />
+  </div>
+</section>

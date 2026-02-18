@@ -1,0 +1,131 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import TitleCenter from "@/components/TitleCenter.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const services = await getSinglePage("servicepage");
+
+  const paths = services.map((service) => ({
+    params: {
+      single: service.id,
+    },
+    props: { service },
+  }));
+  return paths;
+}
+
+const { service } = Astro.props;
+const { title, description, image, icon, contact_form } = service.data;
+const { Content } = await render(service);
+---
+
+<Base {...service.data}>
+  <section class="section-lg">
+    <div class="container">
+      {
+        icon && (
+          <div data-aos="fade-up-sm" data-aos-delay="100">
+            <ImageMod
+              src={icon}
+              alt=""
+              class="w-15 h-15 mb-6 max-lg:mx-auto"
+              aria-hidden="true"
+              width={60}
+              height={60}
+            />
+          </div>
+        )
+      }
+      <TitleCenter title={title} description={description} />
+
+      <div class="relative">
+        {
+          image && (
+           <div data-aos="fade-up-sm" data-aos-delay="100">
+             <ImageMod
+              class="rounded-2xl lg:h-137 w-full object-cover mt-16"
+              src={image}
+              height={700}
+              width={1300}
+              alt={title}
+              aria-hidden="true"
+              format="webp"
+            />
+           </div>
+          )
+        }
+
+        {
+          contact_form && contact_form.enable && (
+            <form
+            data-aos="zoom-in-sm" data-aos-delay="150"
+              action={config.params.contact_form_action}
+              method="POST"
+              class="bg-dark px-10 py-12 rounded-2xl w-[90%] mx-auto lg:w-[40%] lg:absolute top-10 right-10 max-lg:mt-12"
+            >
+              <legend class="mb-10 text-text-light">
+                <h3
+                  class="text-text-light mb-2"
+                  set:html={markdownify(contact_form.title)}
+                />
+                <p set:html={markdownify(contact_form.description)} />
+              </legend>
+              <fieldset class="mb-8">
+                <label for="name" class="sr-only" aria-label="Full Name" />
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Full Name"
+                  type="text"
+                  required
+                />
+              </fieldset>
+
+              <fieldset class="mb-8">
+                <label for="phone" class="sr-only" aria-label="Phone Number" />
+                <input
+                  id="phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="Phone Number"
+                  type="tel"
+                  required
+                />
+              </fieldset>
+
+              <fieldset class="mb-8">
+                <label
+                  for="service_needed"
+                  class="sr-only"
+                  aria-label="Service You Need"
+                />
+                <input
+                  id="service_needed"
+                  name="service_needed"
+                  class="form-input"
+                  placeholder="Service You Need"
+                  type="text"
+                  required
+                />
+              </fieldset>
+
+              <button class="btn btn-primary w-full" type="submit">
+                {contact_form.button_label}
+              </button>
+            </form>
+          )
+        }
+
+        <div data-aos="fade-up-sm" data-aos-delay="100" class="lg:pt-36 content">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

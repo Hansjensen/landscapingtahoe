@@ -1,0 +1,70 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import TitleCenter from "@/components/TitleCenter.astro";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { markdownify } from "@/lib/utils/textConverter";
+import Pricing from "@/partials/Pricing.astro";
+import Testimonial from "@/partials/Testimonial.astro";
+
+const pageIndex = await getListPage("servicepage", "-index");
+if (pageIndex.data.draft) return Astro.redirect("/404");
+const services = await getSinglePage("servicepage");
+const sortedServices = sortByDate(services);
+---
+
+<Base {...pageIndex.data}>
+  <section class="section-lg">
+    <div class="container">
+      <TitleCenter
+        title={pageIndex.data.title}
+        description={pageIndex.data.description}
+        centerText
+      />
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 mt-16 gap-8 md:gap-6">
+        {
+          sortedServices?.map((service) => (
+            <div
+              data-aos="fade-up-sm"
+              data-aos-delay="200"
+              class="border border-border rounded-xl p-8 flex gap-6"
+            >
+              {service.data.icon && (
+                <ImageMod
+                  alt={service.data.title}
+                  class="text-primary shrink-0 w-12 h-12"
+                  src={service.data.icon}
+                  width={50}
+                  height={50}
+                />
+              )}
+              <div class="h-full flex flex-col">
+                <h3
+                  class="h5 font-semibold mb-4"
+                  set:html={markdownify(service.data.title)}
+                />
+                <p
+                  class="mb-6 grow"
+                  set:html={markdownify(service.data.description)}
+                />
+                <a
+                  href={`/services/${service.id}`}
+                  class="mt-auto inline-block text-text-dark/75 font-medium group"
+                >
+                  Learn More
+                  <span class="inline-block transition-transform group-hover:translate-x-2 duration-300 text-xl ml-1">
+                    &rarr;
+                  </span>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <Testimonial />
+  <Pricing />
+</Base>

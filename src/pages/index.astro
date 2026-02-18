@@ -1,0 +1,57 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { markdownify } from "@/lib/utils/textConverter";
+import CallToAction from "@/partials/CallToAction.astro";
+import FAQs from "@/partials/FAQs.astro";
+import HeroBanner from "@/partials/HeroBanner.astro";
+import OurExpertise from "@/partials/OurExpertise.astro";
+import Testimonial from "@/partials/Testimonial.astro";
+import WhatWeOffer from "@/partials/WhatWeOffer.astro";
+import WhyChooseUs from "@/partials/WhyChooseUs.astro";
+
+const homepage = await getListPage("homepage", "-index");
+const blogs = await getSinglePage("blogpage");
+const featuredBlogs = sortByDate(blogs);
+
+const { blog_section, why_choose_us } = homepage.data;
+---
+
+<Base>
+  <HeroBanner />
+  <WhyChooseUs data={why_choose_us} />
+  <WhatWeOffer />
+  <OurExpertise />
+  <CallToAction />
+  <Testimonial />
+
+  {
+    blog_section.enable && (
+      <section class="section">
+        <div class="container">
+          <h2
+            data-aos="fade-up-sm"
+            data-aos-delay="200"
+            class="h2 text-center"
+            set:html={markdownify(blog_section.title)}
+          />
+          <p
+            data-aos="fade-up-sm"
+            data-aos-delay="200"
+            class="text-lg mt-6 mb-12 max-w-[80%] mx-auto text-center text-balance"
+            set:html={markdownify(blog_section.description)}
+          />
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {featuredBlogs.map((blog) => (
+              <BlogCard data={blog} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <FAQs />
+</Base>

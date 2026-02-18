@@ -1,0 +1,121 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import Logo from "@/components/Logo.astro";
+import config from "@/config/config.json";
+import menu from "@/config/menu.json";
+
+const { footer } = menu;
+---
+
+<footer class="section pb-15 relative text-white overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0 bottom-0">
+    <ImageMod
+      src="/images/footer-bg.png"
+      alt=""
+      class="w-full h-full object-cover opacity-100 pointer-events-none"
+      height={1000}
+      width={2000}
+      aria-hidden="true"
+      loading={"lazy"}
+    />
+  </div>
+
+  <div class="container relative z-10">
+    <div
+      data-aos="fade-up-sm"
+      data-aos-delay="200"
+      class="flex gap-6 flex-wrap justify-center max-md:text-center md:justify-between items-baseline"
+    >
+      <Logo src={config.site.footer_logo} height={198} width={475} />
+      <p
+        class="text-lg max-w-xl lg:mr-40 text-balance"
+        set:html={config.params.footer_description}
+      />
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 container py-16 lg:py-20 lg:pl-[30vw]">
+    <!-- Right: Text + Menus -->
+    <div class="space-y-10 lg:space-y-12">
+      <div class="border-t border-white/20 pt-8 lg:pt-10">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Dynamic Menu Sections from menu.json -->
+          {
+            footer.map((section) => (
+              <div data-aos="zoom-out-sm" data-aos-delay="200">
+                <h3 class="text-text-light mb-6 opacity-80 uppercase text-sm tracking-wider">
+                  {section.title}
+                </h3>
+                <ul class="space-y-5">
+                  {section.children.map((item) => (
+                    <li>
+                      <a
+                        href={item.url}
+                        class="text-text-light font-semibold hover:text-text-dark transition-colors duration-300"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+
+          <!-- Column 3: Contact Info -->
+          <div data-aos="zoom-out-sm" data-aos-delay="200" class="space-y-8">
+            <div>
+              <h3
+                class="text-text-light mb-2 opacity-80 text-sm tracking-wider"
+              >
+                Call us:
+              </h3>
+              <a
+                href={`tel:${config.contact_info.phone}`}
+                class="text-text-light font-semibold hover:text-text-dark transition-colors duration-300"
+              >
+                {config.contact_info.phone}
+              </a>
+            </div>
+
+            <div>
+              <h3
+                class="text-text-light mb-2 opacity-80 text-sm tracking-wider"
+              >
+                E-mail:
+              </h3>
+              <a
+                href={`mailto:${config.contact_info.email}`}
+                class="text-text-light font-semibold hover:text-text-dark transition-colors duration-300"
+              >
+                {config.contact_info.email}
+              </a>
+            </div>
+
+            <div>
+              <h3
+                class="text-text-light mb-2 opacity-80 text-sm tracking-wider"
+              >
+                Address:
+              </h3>
+              <a
+                href={`https://www.google.com/maps/place/${encodeURIComponent(config.contact_info.address)}`}
+                class="text-text-light font-semibold hover:text-text-dark text-[15px] leading-relaxed"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {config.contact_info.address}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop: Banner image out of container (left 45%) -->
+  
+  </div>
+</footer>

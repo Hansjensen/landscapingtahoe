@@ -1,0 +1,138 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import {
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  SwiperWrapper,
+} from "astro-swiper";
+import { FaStar } from "react-icons/fa6";
+import type { SwiperOptions } from "swiper/types";
+
+const sectionData = await getListPage("testimonialSection", "testimonial");
+if (!sectionData.data.enable) return null;
+const { ratings, title, description, testimonials } = sectionData.data;
+
+const swiperOptions: SwiperOptions = {
+  spaceBetween: 24,
+  loop: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".testimonial-slider-pagination",
+    type: "bullets",
+    clickable: true,
+    dynamicBullets: false,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+    },
+  },
+};
+---
+
+<section class="section bg-light">
+  <div class="container">
+    <div
+      data-aos="fade-up-sm"
+      data-aos-delay="200"
+      class="flex max-lg:flex-col max-lg:text-center gap-6 items-center mb-12 lg:mb-20"
+    >
+      <div class="flex-2">
+        <h2 set:html={markdownify(title)} class="h1 mb-6" />
+        <p set:html={markdownify(description)} class="text-balance text-lg" />
+      </div>
+      <div class="flex-1">
+        {
+          ratings.enable && (
+            <div class="bg-white/10 rounded-xl p-6">
+              <div class="lg:ml-6">
+                {Array(5)
+                  .fill(0)
+                  .map(() => (
+                    <FaStar className="text-[#FCB508] w-5 h-5 mr-2 inline" />
+                  ))}
+              </div>
+              <div class="flex max-lg:flex-col items-center lg:items-end">
+                <p
+                  class="text-h1 lg:text-[104px] font-semibold text-text-dark/40 leading-none lg:-mb-2"
+                  set:html={markdownify(ratings.total_reviews)}
+                />
+                <p
+                  class="text-text-dark font-bold"
+                  set:html={markdownify(ratings.label)}
+                />
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </div>
+    <Swiper options={swiperOptions} class="testimonial-slider">
+      <SwiperWrapper class={"mb-12"}>
+        {
+          testimonials.map(
+            (item: {
+              avatar: string;
+              content: string;
+              name: string;
+              designation: string;
+            }) => (
+              <SwiperSlide>
+                <div class="rounded-2xl bg-body p-10 relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="54"
+                    height="40"
+                    class="text-primary z-0 absolute top-5 right-4 lg:top-12 lg:right-10 max-lg:scale-50"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M41.659 0a11.666 11.666 0 0 1 11.666 11.473c.3 2.884.257 7.137-1.693 12.047-1.993 5.02-5.88 10.493-12.973 15.813a3.332 3.332 0 0 1-4.667-.666A3.334 3.334 0 0 1 34.659 34c5.213-3.91 8.2-7.71 9.91-11.033A11.668 11.668 0 0 1 30.514 8.24 11.666 11.666 0 0 1 41.66 0zm-30 0a11.666 11.666 0 0 1 11.666 11.473c.3 2.884.257 7.137-1.693 12.047-1.99 5.02-5.88 10.493-12.973 15.813a3.332 3.332 0 0 1-5.3-3.138A3.333 3.333 0 0 1 4.659 34c5.213-3.91 8.2-7.71 9.91-11.033A11.668 11.668 0 0 1 .514 8.24 11.667 11.667 0 0 1 11.66 0z"
+                    />
+                  </svg>
+
+                  <div class="flex items-center relative z-10">
+                    <div class="text-text-dark">
+                      <ImageMod
+                        height={70}
+                        width={70}
+                        class="rounded-full"
+                        src={item.avatar}
+                        alt={item.name}
+                        format="webp"
+                      />
+                    </div>
+                    <div class="ml-4">
+                      <h3
+                        set:text={item.name}
+                        class="h6 font-primary font-semibold"
+                      />
+                      <p
+                        set:text={item.designation}
+                        class="text-text-dark/80"
+                      />
+                    </div>
+                  </div>
+
+                  <blockquote
+                    class="mt-8"
+                    set:html={markdownify(item.content)}
+                  />
+                </div>
+              </SwiperSlide>
+            ),
+          )
+        }
+      </SwiperWrapper>
+      <SwiperPagination
+        class="testimonial-slider-pagination flex items-center justify-center"
+      />
+    </Swiper>
+  </div>
+</section>

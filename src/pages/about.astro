@@ -1,0 +1,136 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import TitleCenter from "@/components/TitleCenter.astro";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import WhyChooseUs from "@/partials/WhyChooseUs.astro";
+import AuthorCard from "@/layouts/components/AuthorCard.astro";
+
+const pageIndex = await getListPage("aboutpage", "-index");
+const {
+  title,
+  description,
+  experience,
+  image,
+  our_values,
+  why_choose_us,
+  our_team,
+} = pageIndex.data;
+
+if (pageIndex.data.draft) return Astro.redirect("/404");
+---
+
+<Base {...pageIndex.data}>
+  <section class="section-lg pb-0">
+    <div class="container flex max-lg:flex-col gap-16 items-center">
+      <TitleCenter title={title} description={description} />
+
+      {
+        image && (
+          <div
+            data-aos="zoom-in-sm"
+            data-aos-delay="200"
+            class="w-[60%] lg:w-[45%] relative"
+          >
+            <ImageMod
+              class="rounded-xl lg:h-137 w-full object-cover"
+              src={image}
+              height={1188}
+              width={1170}
+              alt={title}
+              aria-hidden="true"
+              format="webp"
+            />
+
+            <div
+              data-aos="zoom-in-sm"
+              data-aos-delay="200"
+              class="absolute -bottom-10 -left-10 bg-secondary backdrop-blur-md p-5 border-4 border-primary rounded-2xl shadow-md max-w-55 text-center"
+            >
+              <h3 class="h1 mb-2 text-text-light" set:html={experience.years} />
+              <p
+                class="text-text-light text-2xl"
+                set:html={markdownify(experience.label)}
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    our_values && (
+      <section class="section">
+        <div class="relative">
+          <ImageMod
+            class="w-full h-75 lg:h-112 object-cover object-top"
+            src={our_values.image}
+            width={1900}
+            height={500}
+            alt=""
+            aria-hidden="true"
+            format="webp"
+            loading={"lazy"}
+          />
+
+          <div class="absolute inset-x-0 bottom-0 h-60 bg-linear-to-t from-body to-transparent" />
+        </div>
+
+        <div class="container -mt-25 relative z-10">
+          <div class="flex flex-wrap justify-center gap-6 lg:gap-8">
+            {our_values.values.map((value) => (
+              <div
+                data-aos="fade-up-sm"
+                data-aos-delay="200"
+                class="flex-1 bg-dark/90 backdrop-blur-md p-8 rounded-2xl flex max-lg:flex-col gap-6 min-w-75"
+              >
+                {value.icon && (
+                  <DynamicIcon
+                    className="text-6xl text-primary shrink-0"
+                    icon={value.icon}
+                    width="60"
+                    height="60"
+                  />
+                )}
+                <div>
+                  <h4 class="h5 mb-3 text-text-light" set:html={value.title} />
+                  <p
+                    class="text-text-light"
+                    set:html={markdownify(value.description)}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <WhyChooseUs data={why_choose_us} backgroundColor="bg-body pt-0" />
+
+  {
+    our_team.enable && (
+      <section class="section bg-light">
+        <div class="container">
+          <TitleCenter
+            title={our_team.title}
+            description={our_team.description}
+            centerText
+          />
+
+          {our_team.enable && (
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+              {our_team.members.map((member, i) => (
+                <AuthorCard data={member} index={i} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+</Base>

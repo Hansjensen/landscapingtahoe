@@ -1,0 +1,68 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Services",
+      "url": "/services"
+    },
+    {
+      "name": "Appointment",
+      "url": "/appointment"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Services",
+      "children": [
+        {
+          "name": "Defensible Space",
+          "url": "/services/defensible-space"
+        },
+        {
+          "name": "Hardscape and Retaining Walls",
+          "url": "/services/hardscape-retaining"
+        },
+        {
+          "name": "Irrigation Systems",
+          "url": "/services/irrigation-systems"
+        },
+        {
+          "name": "Paver Patios, Driveways & Walkways",
+          "url": "/services/pavers"
+        },
+        {
+          "name": "Sustainable Landscaping",
+          "url": "/services/sustainable-landscaping"
+        }
+      ]
+    },
+    {
+      "title": "Quick Links",
+      "children": [
+        {
+          "name": "Home",
+          "url": "/"
+        },
+        {
+          "name": "About Us",
+          "url": "/about"
+        },
+        {
+          "name": "Contact",
+          "url": "/contact"
+        }
+      ]
+    }
+  ]
+}

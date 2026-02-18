@@ -1,0 +1,75 @@
+---
+import Button from "@/components/Button.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const homepage = await getListPage("homepage", "-index");
+const { what_we_offer } = homepage.data;
+if (!what_we_offer.enable) return null;
+
+const services = await getSinglePage("servicepage");
+const featuredServices = services
+  .filter((service) => service.data.featured)
+  .sort(
+    (a, b) =>
+      new Date(b.data.date ?? 0).getTime() -
+      new Date(a.data.date ?? 0).getTime(),
+  );
+---
+
+<section class="section bg-light pt-0">
+  <div class="container flex max-lg:flex-col gap-16 lg:gap-26 items-start">
+    <div class="lg:w-[50%]">
+      <h2
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="text-h1"
+        set:html={markdownify(what_we_offer.title)}
+      />
+      <p
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="text-lg mt-6 mb-8"
+        set:html={markdownify(what_we_offer.description)}
+      />
+
+      <Button data={what_we_offer.button} />
+    </div>
+
+    <div class="lg:w-[50%] grid md:grid-cols-2 gap-12.5">
+      {
+        featuredServices.map((service, i) => (
+          <div
+            data-aos="zoom-out-sm"
+            data-aos-delay={`${100 + i * 100}`}
+            class="overflow-hidden group"
+          >
+            <div class="relative w-8 h-8 overflow-hidden">
+              {service.data.icon && (
+                <div class="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
+                  <ImageMod
+                    class="w-8 h-8"
+                    src={service.data.icon}
+                    height={32}
+                    width={32}
+                    alt={service.data.title}
+                  />
+                  <ImageMod
+                    class="w-8 h-8"
+                    src={service.data.icon}
+                    height={32}
+                    width={32}
+                    alt={service.data.title}
+                  />
+                </div>
+              )}
+            </div>
+            <h3 class="h5 mt-6 mb-3">{service.data.title}</h3>
+            <p class="text-balance">{service.data.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

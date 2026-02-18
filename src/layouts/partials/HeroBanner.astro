@@ -1,0 +1,101 @@
+---
+import Button from "@/components/Button.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const homepage = await getListPage("homepage", "-index");
+
+const { banner } = homepage.data;
+---
+
+<section
+  class="pt-40 pb-28 lg:pb-36 lg:pt-56!"
+  data-hero
+  style={`--parallax-offset: 0px; background-image: url('${banner.image}'), linear-gradient(59deg, rgb(147, 153, 145) 0%, rgb(214, 212, 199) 100%); background-size:  cover; background-repeat: no-repeat, no-repeat; background-position: right, left center; background-attachment: scroll, scroll;`}
+>
+  <div class="container">
+    <div class="lg:max-w-[65%]">
+      <h1
+        data-aos="fade-up-sm"
+        data-aos-delay="100"
+        set:html={markdownify(banner.title)}
+        class="mb-4 lg:text-[100px] lg:leading-27.25   text-text-light max-lg:text-center"
+        style="text-shadow: 0px 0px 26px #494949;"
+      />
+      <p
+        data-aos="fade-up-sm"
+        data-aos-delay="150"
+        set:html={markdownify(banner.content)}
+        class="mb-10 text-text-light text-xl max-lg:text-center"
+        style="text-shadow: 0px 0px 8px #494949;"
+      />
+      <div
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="flex gap-6 flex-wrap max-lg:justify-center"
+      >
+        <Button data={banner.button_solid} />
+        <Button data={banner.button_outline} variant="outline" />
+      </div>
+
+      {
+        banner.satisfied_customers.enable && (
+          <div class="mt-10 md:mt-17">
+            <div
+              data-aos="fade-right-sm"
+              data-aos-delay="200"
+              class="flex flex-col lg:flex-row gap-5"
+            >
+              <div class="flex max-lg:mx-auto items-center">
+                {banner.satisfied_customers.images.map((image, i) => (
+                  <ImageMod
+                    class={`shrink-0 w-13.75 h-13.75 border-4 rounded-full border-body ${i === 0 && "translate-x-0"} last:-mr-13.75`}
+                    src={image}
+                    alt="customer-logo"
+                    width={55}
+                    height={55}
+                    style={{
+                      transform: `translateX(${-i * 20}px)`,
+                    }}
+                  />
+                ))}
+              </div>
+              <div>
+                <p class="text-h2 font-medium text-text-light max-lg:text-center max-lg:mx-auto">
+                  {banner.satisfied_customers.count}
+                </p>
+                <p
+                  set:html={markdownify(banner.satisfied_customers.label)}
+                  class="max-lg:text-center max-lg:mx-auto text-text-light lg:-mt-2"
+                />
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const hero = document.querySelector("[data-hero]") as HTMLElement;
+  if (hero) {
+    const updateParallax = () => {
+      const { top } = hero.getBoundingClientRect();
+      const offset = Math.max(0, -top * 0.35);
+
+      // Apply parallax only on larger screens
+      if (window.innerWidth >= 1024) {
+        hero.style.backgroundPosition = `right calc(0% - var(--parallax-offset, 0px)), left center`;
+        hero.style.setProperty("--parallax-offset", `${offset}px`);
+      } else {
+        hero.style.backgroundSize = "cover, cover";
+        hero.style.backgroundPosition = "center, left center";
+      }
+    };
+    updateParallax();
+    window.addEventListener("scroll", updateParallax, { passive: true });
+    window.addEventListener("resize", updateParallax, { passive: true });
+  }
+</script>

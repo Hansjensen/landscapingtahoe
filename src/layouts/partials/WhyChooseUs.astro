@@ -1,0 +1,57 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+import { FaCheck } from "react-icons/fa6";
+
+type Props = {
+  data: CollectionEntry<"aboutpage">["data"]["why_choose_us"];
+  backgroundColor?: string;
+};
+
+const { data, backgroundColor = "bg-light" } = Astro.props;
+if (!data.enable) return null;
+---
+
+<section class={`section ${backgroundColor}`}>
+  <div class="container flex max-lg:flex-col gap-16 items-center">
+    <div data-aos="zoom-in-sm" data-aos-delay="200" class="lg:w-[50%]">
+      <ImageMod
+        class="rounded-xl lg:h-[550px] w-full object-cover"
+        src={data.image}
+        height={1188}
+        width={1170}
+        alt={data.title}
+      />
+    </div>
+    <div class="lg:w-[50%]">
+      <h2
+        data-aos="fade-up-sm"
+        data-aos-delay="150"
+        class="text-h1"
+        set:html={markdownify(data.title)}
+      />
+      <p
+        data-aos="fade-up-sm"
+        data-aos-delay="200"
+        class="text-lg mt-6"
+        set:html={markdownify(data.description)}
+      />
+
+      <div class="mt-8 space-y-6">
+        {
+          data.features.map((feature, i) => (
+            <div
+              data-aos="fade-up-sm"
+              data-aos-delay={`${100 + i * 100}`}
+              class="flex gap-4 items-start"
+            >
+              <FaCheck className="text-primary mt-1 shrink-0" size={16} />
+              <p class="text-lg text-balance" set:html={markdownify(feature)} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

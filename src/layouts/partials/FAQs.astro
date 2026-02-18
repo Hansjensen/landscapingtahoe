@@ -1,0 +1,212 @@
+---
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const sectionData = await getListPage("faqsSection", "faqs");
+if (!sectionData.data.enable) return null;
+
+const { title, description, faqs_list } = sectionData.data;
+---
+
+<section class="section border-t border-border">
+  <div class="container">
+    <h2
+      data-aos="fade-up-sm"
+      data-aos-delay="200"
+      class="h2 text-center"
+      set:html={markdownify(title)}
+    />
+    <p
+      data-aos="fade-up-sm"
+      data-aos-delay="200"
+      class="text-lg mt-6 mb-6 lg:mb-12 max-w-[80%] mx-auto text-center text-balance"
+      set:html={markdownify(description)}
+    />
+    <div
+      class="w-full lg:max-w-218 mx-auto flex flex-col"
+      data-aos="fade-left-sm"
+      data-aos-delay="100"
+    >
+      {
+        faqs_list?.map((faq, i) => (
+          <div
+            role="button"
+            tabindex="0"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${i}`}
+            class="group p-7 border-b border-border cursor-pointer transition-all duration-300 flex flex-col faq-item-fix"
+            data-faq-id={i}
+          >
+            <div class="flex justify-between items-center">
+              <h6 set:html={markdownify(faq.question)} />
+              <span
+                class="toggle-icon text-text-dark text-[32px] transition-all duration-300 rotate-0"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </div>
+
+            <p
+              id={`faq-answer-${i}`}
+              class="faq-answer overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity] duration-[600ms,400ms] ease-in-out max-w-195"
+              set:html={markdownify(faq.answer)}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  interface FAQElements {
+    item: HTMLElement;
+    answer: HTMLElement;
+    icon: HTMLElement;
+  }
+
+  class FAQAccordion {
+    private items: HTMLElement[];
+    private activeItem: HTMLElement | null = null;
+
+    constructor() {
+      this.items = Array.from(
+        document.querySelectorAll<HTMLElement>(".faq-item-fix"),
+      );
+      this.init();
+    }
+
+    private init(): void {
+      if (this.items.length === 0) return;
+
+      // Open first item by default
+      this.openItem(this.items[0]);
+
+      // Add event listeners
+      this.items.forEach((item) => {
+        item.addEventListener("click", (e) => this.handleClick(e, item));
+        item.addEventListener("keydown", (e) => this.handleKeydown(e, item));
+      });
+    }
+
+    private getElements(item: HTMLElement): FAQElements | null {
+      const answer = item.querySelector<HTMLElement>(".faq-answer");
+      const icon = item.querySelector<HTMLElement>(".toggle-icon");
+
+      if (!answer || !icon) {
+        console.warn("FAQ item missing required elements");
+        return null;
+      }
+
+      return { item, answer, icon };
+    }
+
+    private handleClick(e: Event, item: HTMLElement): void {
+      e.preventDefault();
+      this.toggleItem(item);
+    }
+
+    private handleKeydown(e: KeyboardEvent, item: HTMLElement): void {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.toggleItem(item);
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        this.focusNext(item);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        this.focusPrevious(item);
+      }
+    }
+
+    private focusNext(currentItem: HTMLElement): void {
+      const currentIndex = this.items.indexOf(currentItem);
+      const nextIndex = (currentIndex + 1) % this.items.length;
+      this.items[nextIndex].focus();
+    }
+
+    private focusPrevious(currentItem: HTMLElement): void {
+      const currentIndex = this.items.indexOf(currentItem);
+      const previousIndex =
+        currentIndex === 0 ? this.items.length - 1 : currentIndex - 1;
+      this.items[previousIndex].focus();
+    }
+
+    private toggleItem(item: HTMLElement): void {
+      const isCurrentlyActive = this.activeItem === item;
+
+      // Close all items
+      this.items.forEach((i) => this.closeItem(i));
+
+      // Open clicked item if it wasn't already active
+      if (!isCurrentlyActive) {
+        this.openItem(item);
+      }
+    }
+
+    private openItem(item: HTMLElement): void {
+      const elements = this.getElements(item);
+      if (!elements) return;
+
+      const { answer, icon } = elements;
+
+      // Update ARIA attributes
+      item.setAttribute("aria-expanded", "true");
+
+      // Set max height for smooth animation
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+
+      // Update classes
+      answer.classList.remove("opacity-0");
+      answer.classList.add("opacity-100");
+
+      icon.classList.remove("rotate-0");
+      icon.classList.add("rotate-180");
+      icon.textContent = "−";
+
+      item.classList.remove("bg-transparent", "gap-0");
+      item.classList.add("bg-body", "gap-2");
+
+      this.activeItem = item;
+    }
+
+    private closeItem(item: HTMLElement): void {
+      const elements = this.getElements(item);
+      if (!elements) return;
+
+      const { answer, icon } = elements;
+
+      // Update ARIA attributes
+      item.setAttribute("aria-expanded", "false");
+
+      // Reset max height
+      answer.style.maxHeight = "0";
+
+      // Update classes
+      answer.classList.remove("opacity-100");
+      answer.classList.add("opacity-0");
+
+      icon.classList.remove("rotate-180");
+      icon.classList.add("rotate-0");
+      icon.textContent = "+";
+
+      item.classList.remove("bg-dark", "gap-2");
+      item.classList.add("bg-body", "gap-2");
+
+      if (this.activeItem === item) {
+        this.activeItem = null;
+      }
+    }
+  }
+
+  // Initialize FAQ accordion when DOM is ready
+  document.addEventListener("DOMContentLoaded", () => {
+    new FAQAccordion();
+  });
+
+  // Handle navigation events for Astro
+  document.addEventListener("astro:page-load", () => {
+    new FAQAccordion();
+  });
+</script>

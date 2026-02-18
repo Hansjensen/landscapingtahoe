@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-label="Pavers icon">
+  <path d="M5 5H10V10H5V5Z" stroke="#E1A356" stroke-width="2" stroke-linejoin="round"></path>
+  <path d="M14 5H19V10H14V5Z" stroke="#E1A356" stroke-width="2" stroke-linejoin="round"></path>
+  <path d="M5 14H10V19H5V14Z" stroke="#E1A356" stroke-width="2" stroke-linejoin="round"></path>
+  <path d="M14 14H19V19H14V14Z" stroke="#E1A356" stroke-width="2" stroke-linejoin="round"></path>
+  <path d="M10 12H14" stroke="#E1A356" stroke-width="2" stroke-linecap="round"></path>
+  <path d="M12 10V14" stroke="#E1A356" stroke-width="2" stroke-linecap="round"></path>
+</svg>

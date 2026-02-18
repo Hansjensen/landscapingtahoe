@@ -1,0 +1,56 @@
+---
+import Button from "@/components/Button.astro";
+import TitleCenter from "@/components/TitleCenter.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+const sectionData = await getListPage("pricingSection", "pricing");
+if (!sectionData.data.enable) return null;
+
+const { title, description, plans } = sectionData.data;
+---
+
+<section class="section">
+  <div class="container">
+    <TitleCenter title={title} description={description} centerText />
+
+    <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3 mt-16">
+      {
+        plans?.map((plan) => (
+          <div
+            data-aos="fade-up-sm"
+            data-aos-delay="200"
+            class="border border-border rounded-xl flex flex-col pb-8"
+          >
+            <div class="p-8 bg-secondary overflow-hidden rounded-t-xl">
+              <h3
+                class="h6 text-text-light text-base text-center"
+                set:html={markdownify(plan.name)}
+              />
+              <p
+                class="text-center text-text-light text-h1 font-bold"
+                set:html={markdownify(plan.price)}
+              />
+              <p
+                class="text-center text-text-light text-base"
+                set:html={markdownify(plan.description)}
+              />
+            </div>
+
+            <ul class="grow p-8">
+              {plan.features?.map((feature) => (
+                <li class="flex items-center mb-3">
+                  <span class="text-primary font-semibold text-xl mr-3">
+                    &#10003;
+                  </span>
+                  <span set:html={feature} />
+                </li>
+              ))}
+            </ul>
+            <Button data={plan.button} className="mx-8 text-center" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

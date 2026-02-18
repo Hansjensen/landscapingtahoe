@@ -1,0 +1,106 @@
+---
+import TitleCenter from "@/components/TitleCenter.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import FAQs from "@/partials/FAQs.astro";
+
+const pageIndex = await getListPage("contactpage", "-index");
+const { title, description } = pageIndex.data;
+
+if (pageIndex.data.draft) return Astro.redirect("/404");
+---
+
+<Base {...pageIndex.data}>
+  <section class="section-lg">
+    <div class="container">
+      <div class="flex max-lg:flex-col gap-16 items-center">
+        <div data-aos="zoom-in-sm" data-aos-delay="200" class="lg:w-[45%]">
+          <TitleCenter
+            title={title}
+            description={description}
+            className="xl:w-[80%]"
+          />
+        </div>
+        <div class="w-[90%] md:w-[70%] lg:w-[55%]">
+          <form
+            data-aos="zoom-in-sm"
+            data-aos-delay="150"
+            action={config.params.contact_form_action}
+            method="POST"
+            class="bg-dark px-10 py-12 rounded-2xl"
+          >
+            <fieldset class="mb-8">
+              <label for="name" class="sr-only" aria-label="Full Name"></label>
+              <input
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Full Name"
+                type="text"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="mb-8">
+              <label for="phone" class="sr-only" aria-label="Phone Number"
+              ></label>
+              <input
+                id="phone"
+                name="phone"
+                class="form-input"
+                placeholder="Phone Number"
+                type="tel"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="mb-8">
+              <label
+                for="service_needed"
+                class="sr-only"
+                aria-label="Service You Need"></label>
+              <input
+                id="service_needed"
+                name="service_needed"
+                class="form-input"
+                placeholder="Service You Need"
+                type="text"
+                required
+              />
+            </fieldset>
+
+            <button class="btn btn-primary w-full" type="submit">
+              Contact Us
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {
+        config.google_map.enable && (
+          <div class="mt-16">
+            <div
+              data-aos="fade-in-sm"
+              data-aos-delay="200"
+              class="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <iframe
+                src={config.google_map.embed_url}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowfullscreen={true}
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Google Map Location"
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <FAQs />
+</Base>
