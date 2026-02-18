@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "South Lake Landscaping",
-    "base_url": "https://roofer-astro.vercel.app",
+    "base_url": "https://landscapingtahoe.com",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -18,7 +18,7 @@
   },
 
   "announcement": {
-    "enable": true,
+    "enable": false,
     "content": "<span class='text-center block'>🎉 Get 20% off on all roofing services this summer! Limited time offer. <a href='/contact' class='underline'>Book Now</a> 🎉</span>",
     "expire_days": 7
   },
