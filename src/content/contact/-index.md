@@ -1,11 +1,14 @@
 ---
-title: "Feel free to contact us."
-description: "If you're looking to describe your contact information in a resume, here are some tips that might help you."
-meta_title: ""
+title: "Contact South Lake Landscaping"
+
+meta_title: "Contact South Lake Landscaping | South Lake Tahoe Landscaping"
+
+description: "Contact South Lake Landscaping for professional landscaping services in South Lake Tahoe, CA. Request a free estimate for irrigation, hardscaping, defensible space, and seasonal yard maintenance."
+
 image: ""
 draft: false
 
 google_map:
-  enable: false
-  link: ""
+  enable: true
+  link: "https://www.google.com/maps?q=Lake+Tahoe,+CA"
 ---
