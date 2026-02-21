@@ -1,7 +1,7 @@
 ---
 title: "Irrigation Systems"
 
-meta_title: "Irrigation Installation in South Lake Tahoe, CA | Sprinkler & Drip Systems"
+meta_title: "Irrigation Installation in Lake Tahoe, CA | Sprinkler & Drip Systems"
 
 description: "Irrigation installation with freeze-resistant sprinkler and drip systems."
 
@@ -15,16 +15,16 @@ icon: "/images/icons/irrigation.svg"
 contact_form:
   enable: true
   title: "Schedule an Irrigation Consultation"
-  description: "Need a new sprinkler system or irrigation upgrade? Contact South Lake Landscaping for professional irrigation installation and winterization services in South Lake Tahoe."
+  description: "Need a new sprinkler system or irrigation upgrade? Contact South Lake Landscaping for professional irrigation installation and winterization services in Lake Tahoe."
   button_label: "Request a Consultation"
 ---
 ## About the Service
 
-Proper irrigation in South Lake Tahoe requires more than installing sprinklers. At over 6,000 feet in elevation, properties face short growing seasons, rocky soil conditions, and harsh winter freezes that can damage poorly designed systems.
+Proper irrigation in Lake Tahoe requires more than installing sprinklers. At over 6,000 feet in elevation, properties face short growing seasons, rocky soil conditions, and harsh winter freezes that can damage poorly designed systems.
 
 South Lake Landscaping installs water-efficient irrigation systems designed specifically for Tahoe’s mountain climate. Whether you need a new sprinkler system, drip irrigation for garden beds, or an upgrade to improve efficiency, we build systems that conserve water and promote healthy plant growth.
 
-## Why Irrigation Is Important in South Lake Tahoe
+## Why Irrigation Is Important in Lake Tahoe
 
 Water management is critical in the Lake Tahoe Basin. Overwatering can cause erosion and runoff, while under-watering stresses plants in the dry summer months.
 
@@ -56,7 +56,7 @@ Reduce water waste
 
 * Leak detection and valve replacement
 
-We use durable components designed to withstand freeze-thaw cycles common in South Lake Tahoe.
+We use durable components designed to withstand freeze-thaw cycles common in Lake Tahoe.
 
 ## How to Get Started
 
@@ -89,4 +89,4 @@ With professional irrigation installation, you can expect:
 
 * Reliable performance season after season
 
-📞 Contact South Lake Landscaping today to schedule your irrigation consultation in South Lake Tahoe, CA.
+📞 Contact South Lake Landscaping today to schedule your irrigation consultation in Lake Tahoe, CA.

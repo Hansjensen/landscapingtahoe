@@ -1,7 +1,7 @@
 ---
 title: "Defensible Space Landscaping"
 
-meta_title: "Defensible Space Landscaping in South Lake Tahoe, CA | Fire-Safe Yard Clearing"
+meta_title: "Defensible Space Landscaping in Lake Tahoe, CA | Fire-Safe Yard Clearing"
 
 description: "Defensible space clearing for wildfire risk reduction."
 
@@ -15,19 +15,19 @@ icon: "/images/icons/defense.svg"
 contact_form:
   enable: true
   title: "Schedule a Defensible Space Assessment"
-  description: "Protect your home and meet local fire safety requirements. Contact South Lake Landscaping today for defensible space clearing services in South Lake Tahoe."
+  description: "Protect your home and meet local fire safety requirements. Contact South Lake Landscaping today for defensible space clearing services in Lake Tahoe."
   button_label: "Request an Assessment"
 ---
 
 ## About the Service
 
-Defensible space landscaping in South Lake Tahoe is essential for protecting your home from wildfire risk. With dense forest surroundings, dry summer conditions, and increasing fire regulations, proper vegetation management is critical for safety and compliance.
+Defensible space landscaping in Lake Tahoe is essential for protecting your home from wildfire risk. With dense forest surroundings, dry summer conditions, and increasing fire regulations, proper vegetation management is critical for safety and compliance.
 
 South Lake Landscaping provides professional defensible space services designed to reduce fire hazards while maintaining the natural beauty of your property.
 
 We help homeowners create safer outdoor environments through strategic vegetation removal, tree trimming, brush clearing, and property cleanup.
 
-## Why Defensible Space Is Important in South Lake Tahoe
+## Why Defensible Space Is Important in Lake Tahoe
 
 The Lake Tahoe Basin is a high wildfire-risk area. Creating defensible space around your home:
 
@@ -57,7 +57,7 @@ Proper defensible space landscaping is not just recommended — it’s often req
 
 * Seasonal fire safety property inspections
 
-We work with homeowners, second-home owners, and vacation rental properties throughout South Lake Tahoe.
+We work with homeowners, second-home owners, and vacation rental properties throughout Lake Tahoe.
 
 ## How to Get Started
 
@@ -87,4 +87,4 @@ With professional defensible space landscaping, you can expect:
 
 * A more maintained and organized landscape
 
-📞 Contact South Lake Landscaping today to schedule your defensible space consultation in South Lake Tahoe, CA.
+📞 Contact South Lake Landscaping today to schedule your defensible space consultation in Lake Tahoe, CA.

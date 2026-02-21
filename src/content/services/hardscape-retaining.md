@@ -1,9 +1,9 @@
 ---
 title: "Hardscaping & Retaining Walls"
 
-meta_title: "Hardscaping & Retaining Wall Installation in South Lake Tahoe, CA"
+meta_title: "Hardscaping & Retaining Wall Installation in Lake Tahoe, CA"
 
-description: "Retaining walls and hardscaping in South Lake Tahoe built for slope stability."
+description: "Retaining walls and hardscaping in Lake Tahoe built for slope stability."
 
 image: "/images/services/2.png"
 date: 2026-01-28T05:00:00Z
@@ -15,17 +15,17 @@ icon: "/images/icons/hardscape.svg"
 contact_form:
   enable: true
   title: "Schedule a Hardscaping Consultation"
-  description: "Upgrade your outdoor space with custom patios, walkways, and retaining walls built for South Lake Tahoe’s climate. Contact South Lake Landscaping for a free consultation."
+  description: "Upgrade your outdoor space with custom patios, walkways, and retaining walls built for Lake Tahoe’s climate. Contact South Lake Landscaping for a free consultation."
   button_label: "Request a Consultation"
 ---
 
 ## About the Service
 
-Hardscaping in South Lake Tahoe requires expert planning and proper installation techniques to withstand heavy snow loads, freeze-thaw cycles, and sloped mountain terrain.
+Hardscaping in Lake Tahoe requires expert planning and proper installation techniques to withstand heavy snow loads, freeze-thaw cycles, and sloped mountain terrain.
 
 South Lake Landscaping designs and installs custom patios, walkways, paver driveways, and structural retaining walls built specifically for Tahoe conditions. Whether you need to improve drainage, stabilize a hillside, or create functional outdoor living space, our hardscape solutions combine durability with natural mountain aesthetics.
 
-## Why Hardscaping & Retaining Walls Are Important in South Lake Tahoe
+## Why Hardscaping & Retaining Walls Are Important in Lake Tahoe
 
 Many properties in the Lake Tahoe Basin are built on sloped or uneven terrain. Without proper retaining walls and drainage control, soil erosion and structural shifting can occur.
 
@@ -92,4 +92,4 @@ With professional hardscaping and retaining wall installation, you can expect:
 
 * Increased property value
 
-📞 Contact South Lake Landscaping today to schedule your hardscaping and retaining wall consultation in South Lake Tahoe, CA.
+📞 Contact South Lake Landscaping today to schedule your hardscaping and retaining wall consultation in Lake Tahoe, CA.
