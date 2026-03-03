@@ -1,9 +1,9 @@
 ---
 title: "Contact South Lake Landscaping"
 
-meta_title: "Contact South Lake Landscaping | South Lake Tahoe Landscaping"
+meta_title: "Contact South Lake Landscaping | Lake Tahoe Landscaping"
 
-description: "Contact South Lake Landscaping for professional landscaping services in South Lake Tahoe, CA. Request a free estimate for irrigation, hardscaping, defensible space, and seasonal yard maintenance."
+description: "Contact South Lake Landscaping for professional landscaping services in Lake Tahoe, CA. Request a free estimate for irrigation, hardscaping, defensible space, and seasonal yard maintenance."
 
 image: ""
 draft: false

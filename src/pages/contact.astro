@@ -180,6 +180,13 @@ if (pageIndex.data.draft) return Astro.redirect("/404");
               placeholder="Type your message here..."
               rows={8}
               required></textarea>
+            <input
+              name="company"
+              type="text"
+              style="display:none"
+              tabindex="-1"
+              autocomplete="off"
+            />
           </fieldset>
 
           <button
