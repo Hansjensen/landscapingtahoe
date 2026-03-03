@@ -24,6 +24,7 @@
   },
 
   "params": {
+    "turnstile_site_key": "0x4AAAAAACl0fhCTznD7Nl0x",
     "contact_form_action": "/api/contact",
     "footer_description": "South Lake Landscaping is a California Licensed C-27 contractor fully licensed, insured and bonded. License number 1089767"
   },

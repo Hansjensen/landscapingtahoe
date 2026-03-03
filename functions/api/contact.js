@@ -11,6 +11,29 @@ export async function onRequestPost(context) {
 
   const form = await request.formData();
 
+  const token = (form.get("cf-turnstile-response") || "").toString().trim();
+if (!token) {
+  return new Response("Turnstile token missing", { status: 400 });
+}
+
+const ip = request.headers.get("CF-Connecting-IP") || "";
+
+const verifyForm = new FormData();
+verifyForm.append("secret", env.TURNSTILE_SECRET_KEY);
+verifyForm.append("response", token);
+if (ip) verifyForm.append("remoteip", ip); // optional
+
+const verifyResp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+  method: "POST",
+  body: verifyForm,
+});
+
+const verifyData = await verifyResp.json();
+
+if (!verifyData.success) {
+  return new Response("Turnstile verification failed", { status: 403 });
+}
+
   const firstName = (form.get("first-name") || "").toString().trim();
   const lastName = (form.get("last-name") || "").toString().trim();
   const email = (form.get("email") || "").toString().trim();

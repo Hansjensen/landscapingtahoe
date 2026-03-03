@@ -94,6 +94,8 @@ if (pageIndex.data.draft) return Astro.redirect("/404");
       </div>
       <div class="lg:w-[55%]">
 
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
         <form
           data-aos="zoom-in-sm"
           data-aos-delay="150"
@@ -191,6 +193,11 @@ if (pageIndex.data.draft) return Astro.redirect("/404");
             />
           </fieldset>
 
+            <div
+              class="cf-turnstile"
+              data-sitekey={config.params.turnstile_site_key}
+            />
+            
           <button
             class="btn btn-primary hover:bg-secondary text-body w-full"
             type="submit"
