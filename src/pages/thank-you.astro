@@ -1,0 +1,19 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+
+const pageIndex = await getListPage("contactpage", "-index");
+---
+<Base {...pageIndex.data}>
+  <section class="section-lg">
+    <div class="container max-w-2xl">
+      <div class="rounded-2xl border border-border bg-light p-8">
+        <h1 class="text-text-dark text-2xl font-semibold">Success!</h1>
+        <p class="mt-3 text-text-dark">
+          Your message has been sent. We’ll get back to you shortly.
+        </p>
+        <a class="btn btn-primary mt-6 inline-block" href="/contact">Back to Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
