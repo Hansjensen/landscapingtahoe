@@ -5,7 +5,7 @@ description: "Find answers to common questions about our landscaping services in
 
 faqs_list:
   - question: What landscaping services do you offer in Lake Tahoe?
-    answer: We provide sustainable landscaping, irrigation installation, defensible space clearing, retaining walls, paver patios, lawn installation, and seasonal yard cleanups throughout Lake Tahoe and surrounding areas.
+    answer: We provide sustainable landscaping, best managment practices (BMP), irrigation installation, defensible space clearing, retaining walls, paver patios, and lawn installations throughout Lake Tahoe and surrounding areas.
 
   - question: Do you offer defensible space services?
     answer: Yes. We provide professional defensible space landscaping, including vegetation clearing, tree trimming, and fire-safe property maintenance to help reduce wildfire risk and improve compliance with local guidelines.

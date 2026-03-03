@@ -13,7 +13,7 @@ featured: false
 icon: "/images/icons/irrigation.svg"
 
 contact_form:
-  enable: true
+  enable: false
   title: "Schedule an Irrigation Consultation"
   description: "Need a new sprinkler system or irrigation upgrade? Contact South Lake Landscaping for professional irrigation installation and winterization services in Lake Tahoe."
   button_label: "Request a Consultation"

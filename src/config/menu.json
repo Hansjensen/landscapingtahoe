@@ -13,10 +13,6 @@
       "url": "/services"
     },
     {
-      "name": "Appointment",
-      "url": "/appointment"
-    },
-    {
       "name": "Contact",
       "url": "/contact"
     }

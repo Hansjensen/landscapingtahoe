@@ -12,7 +12,7 @@ featured: true
 icon: "/images/icons/sustainable.svg"
 
 contact_form:
-  enable: true
+  enable: false
   title: "Schedule a Free Consultation"
   description: "Ready to design a beautiful, low-maintenance, eco-friendly landscape? Contact South Lake Landscaping today for a free sustainable landscaping consultation in Lake Tahoe."
   button_label: "Request a Consultation"

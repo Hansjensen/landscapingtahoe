@@ -13,7 +13,7 @@ featured: true
 icon: "/images/icons/defense.svg"
 
 contact_form:
-  enable: true
+  enable: false
   title: "Schedule a Defensible Space Assessment"
   description: "Protect your home and meet local fire safety requirements. Contact South Lake Landscaping today for defensible space clearing services in Lake Tahoe."
   button_label: "Request an Assessment"

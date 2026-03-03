@@ -13,7 +13,7 @@ featured: false
 icon: "/images/icons/paver.svg"
 
 contact_form:
-  enable: true
+  enable: false
   title: "Schedule a Paver Installation Consultation"
   description: "Upgrade your outdoor space with professionally installed paver patios, driveways, and walkways built for Lake Tahoe’s climate."
   button_label: "Request a Consultation"

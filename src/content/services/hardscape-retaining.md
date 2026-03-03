@@ -13,7 +13,7 @@ featured: true
 icon: "/images/icons/hardscape.svg"
 
 contact_form:
-  enable: true
+  enable: false
   title: "Schedule a Hardscaping Consultation"
   description: "Upgrade your outdoor space with custom patios, walkways, and retaining walls built for Lake Tahoe’s climate. Contact South Lake Landscaping for a free consultation."
   button_label: "Request a Consultation"

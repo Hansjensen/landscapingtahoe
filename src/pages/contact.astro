@@ -4,9 +4,10 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import FAQs from "@/partials/FAQs.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import DynamicIcon from "@/helpers/DynamicIcon";
 
 const pageIndex = await getListPage("contactpage", "-index");
-const { title, description } = pageIndex.data;
 
 if (pageIndex.data.draft) return Astro.redirect("/404");
 ---
@@ -14,68 +15,182 @@ if (pageIndex.data.draft) return Astro.redirect("/404");
 <Base {...pageIndex.data}>
   <section class="section-lg">
     <div class="container">
-      <div class="flex max-lg:flex-col gap-16 items-center">
-        <div data-aos="zoom-in-sm" data-aos-delay="200" class="lg:w-[45%]">
-          <TitleCenter
-            title={title}
-            description={description}
-            className="xl:w-[80%]"
-          />
+      <div class="container flex max-lg:flex-col gap-16 items-center">
+      <div data-aos="zoom-in-sm" data-aos-delay="200" class="md:w-[45%]">
+        <TitleCenter
+          title={pageIndex.data.title}
+          description={pageIndex.data.description}
+          className="sm:w-[80%]"
+        />
+
+        <div
+          class="flex flex-row flex-wrap sm:justify-center lg:flex-col gap-4 sm:gap-8 mt-12"
+        >
+          <!-- Phone  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.phone && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-4 h-4"
+                  icon={"FaPhone"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"Call Us"} />
+              <a
+                href={`tel:${config.contact_info.phone}`}
+                class="mb-6"
+                set:html={markdownify(config.contact_info.phone)}
+              />
+            </div>
+          </div>
+
+          <!-- Email  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.email && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-4 h-4"
+                  icon={"FaEnvelope"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"SEND AN EMAIL"} />
+              <a href={`mailto:${config.contact_info.email}`} class="mb-6">
+                {config.contact_info.email}
+              </a>
+            </div>
+          </div>
+
+          <!-- OUR OFFICE  -->
+          <div data-aos="fade-up-sm" data-aos-delay="200" class="flex gap-4">
+            {
+              config.contact_info.address && (
+                <DynamicIcon
+                  className="text-primary shrink-0 w-4 h-4"
+                  icon={"FaLocationDot"}
+                  width={24}
+                  height={24}
+                />
+              )
+            }
+            <div class="h-full flex flex-col">
+              <h6 class="mb-2" set:html={"OUR OFFICE"} />
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(config.contact_info.address)}`}
+                class="mb-6"
+                set:html={markdownify(config.contact_info.address)}
+              />
+            </div>
+          </div>
         </div>
-        <div class="w-[90%] md:w-[70%] lg:w-[55%]">
-          <form
-            data-aos="zoom-in-sm"
-            data-aos-delay="150"
-            action={config.params.contact_form_action}
-            method="POST"
-            class="bg-dark px-10 py-12 rounded-2xl"
-          >
-            <fieldset class="mb-8">
-              <label for="name" class="sr-only" aria-label="Full Name"></label>
+      </div>
+      <div class="lg:w-[55%]">
+        <form
+          data-aos="zoom-in-sm"
+          data-aos-delay="150"
+          action={config.params.contact_form_action}
+          method="POST"
+          class=""
+        >
+          <div class="lg:flex gap-4">
+            <fieldset class="mb-6 w-full">
+              <label
+                for="first-name"
+                class="text-text-dark font-semibold"
+                aria-label="First Name">First Name</label
+              >
               <input
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder="Full Name"
+                id="first-name"
+                name="first-name"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="First Name"
                 type="text"
                 required
               />
             </fieldset>
 
-            <fieldset class="mb-8">
-              <label for="phone" class="sr-only" aria-label="Phone Number"
-              ></label>
+            <fieldset class="mb-6 w-full">
+              <label
+                for="last-name"
+                class="text-text-dark font-semibold"
+                aria-label="Last Name">Last Name</label
+              >
+              <input
+                id="last-name"
+                name="last-name"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="Last Name"
+                type="text"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="lg:flex gap-4">
+            <fieldset class="mb-6 w-full">
+              <label
+                for="email"
+                class="text-text-dark font-semibold"
+                aria-label="email">Email</label
+              >
+              <input
+                id="email"
+                name="email"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="your.email@example.com"
+                type="email"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="mb-6 w-full">
+              <label
+                for="phone"
+                class="text-text-dark font-semibold"
+                aria-label="Phone Number">Phone Number</label
+              >
               <input
                 id="phone"
                 name="phone"
-                class="form-input"
-                placeholder="Phone Number"
-                type="tel"
-                required
-              />
-            </fieldset>
-
-            <fieldset class="mb-8">
-              <label
-                for="service_needed"
-                class="sr-only"
-                aria-label="Service You Need"></label>
-              <input
-                id="service_needed"
-                name="service_needed"
-                class="form-input"
-                placeholder="Service You Need"
+                class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+                placeholder="01234567890"
                 type="text"
                 required
               />
             </fieldset>
+          </div>
 
-            <button class="btn btn-primary w-full" type="submit">
-              Contact Us
-            </button>
-          </form>
-        </div>
+          <fieldset class="mb-6 w-full">
+            <label
+              for="message"
+              class="text-text-dark font-semibold"
+              aria-label="How Can We Help?">How Can We Help?</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              class="form-input bg-light text-text-dark placeholder:text-text-dark/40 border border-border mt-2"
+              placeholder="Type your message here..."
+              rows={8}
+              required></textarea>
+          </fieldset>
+
+          <button
+            class="btn btn-primary hover:bg-secondary text-body w-full"
+            type="submit"
+          >
+            Book Appointment
+          </button>
+        </form>
       </div>
+    </div>
 
       {
         config.google_map.enable && (

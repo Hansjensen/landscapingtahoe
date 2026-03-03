@@ -3,7 +3,7 @@ title: "Best Management Practices (BMP)"
 
 meta_title: "Services | Best Management Practices"
 
-description: "A requirment by Tahoe Regional Planning Agency to protect the Lake Tahoe's delicate ecosystem."
+description: "A requirment by Tahoe Regional Planning Agency to protect Lake Tahoe's delicate ecosystem."
 
 image: "/images/services/2.png"
 date: 2026-01-29T05:00:00Z
@@ -12,9 +12,9 @@ draft: false
 featured: true
 icon: "/images/icons/damage-repairs.svg"
 contact_form:
-  enable: true
+  enable: false
   title: "Best Management Practices"
-  description: "A requirment by Tahoe Regional Planning Agency to protect the Lake Tahoe's delicate ecosystem."
+  description: "A requirment by Tahoe Regional Planning Agency to protect Lake Tahoe's delicate ecosystem."
   button_label: "Get My Free Estimate"
 ---
 ## About the Service
