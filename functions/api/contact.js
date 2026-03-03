@@ -66,7 +66,7 @@ ${message}
       return new Response(`Email failed: ${errorText}`, { status: 502 });
     }
 
-    return new Response("Success", { status: 200 });
+    return Response.redirect(new URL("/contact?sent=1", request.url).toString(), 303);
 
   } catch (err) {
     return new Response("Server error", { status: 500 });
