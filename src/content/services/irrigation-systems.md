@@ -5,7 +5,7 @@ meta_title: "Irrigation Installation in Lake Tahoe, CA | Sprinkler & Drip System
 
 description: "Irrigation installation with freeze-resistant sprinkler and drip systems."
 
-image: "/images/services/1.png"
+image: "/images/services/irrigation.png"
 date: 2026-01-28T05:00:00Z
 draft: false
 

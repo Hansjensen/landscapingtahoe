@@ -5,7 +5,7 @@ meta_title: "Paver Patio & Driveway Installation in Lake Tahoe, CA"
 
 description: "Paver patios and driveways built for snow durability."
 
-image: "/images/services/1.png"
+image: "/images/services/paver.png"
 date: 2026-01-28T05:00:00Z
 draft: false
 

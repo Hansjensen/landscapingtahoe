@@ -5,7 +5,7 @@ meta_title: "Services | Best Management Practices"
 
 description: "A requirment by Tahoe Regional Planning Agency to protect Lake Tahoe's delicate ecosystem."
 
-image: "/images/services/2.png"
+image: "/images/services/BMP.png"
 date: 2026-01-29T05:00:00Z
 draft: false
 
