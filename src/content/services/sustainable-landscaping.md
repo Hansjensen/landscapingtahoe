@@ -1,9 +1,9 @@
 ---
-title: "Low Maintanance Sustainable Landscaping"
+title: "Low Maintenance Sustainable Landscaping"
 
-meta_title: "Low Maintanance Sustainable Landscaping in Lake Tahoe, CA | Eco-Friendly Landscape Design"
+meta_title: "Low Maintenance Sustainable Landscaping in Lake Tahoe, CA | Eco-Friendly Landscape Design"
 
-description: "Low Maintanance Sustainable landscaping with native plants and efficient irrigation."
+description: "Low Maintenance Sustainable landscaping with native plants and efficient irrigation."
 image: "/images/services/1.png"
 date: 2026-01-28T05:00:00Z
 draft: false
