@@ -17,7 +17,7 @@ banner:
   button_solid:
     enable: true
     label: "Book A Free Estimate"
-    link: "/"
+    link: "/contact"
     icon: "FaPhone" # Icon name from react-icons
   button_outline:
     enable: true
